@@ -1,0 +1,15 @@
+
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: auto;
+    font-size: 30;
+    line-height: 2.0;
+    background-image: url("../images/nyt_img.png");
+    background-position: top center;
+  }
+  #container {
+    padding:200px;
+    margin-top: 10px;
+    margin-left:150px;
+  }
