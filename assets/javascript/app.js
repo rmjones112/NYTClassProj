@@ -1,20 +1,37 @@
-$("button").on("click", function() {
-    var year = 2008;
-var queryURL = https://api.nytimes.com/svc/archive/v1/2019/1.json?api-key=qI4RzAhO7OerqhKQ6ZHukByZkZOI2zL1
-var queryURL = "https://api.nytimes.com/svc/archive/v1/"
 
+$("#search").click(function(){
+    var searchItem=$("#searchTerm");
+    var limit=$("#limit");
+    var startYear=$("#startYear");
+    var endYear=$("#endYear");
+    var apiKey="qI4RzAhO7OerqhKQ6ZHukByZkZOI2zL1";
+    var queryURL='';
+    //  var searchItem="elections";
+    // var limit=6;
+    // var startYear='';
+    // var endYear='';
+    // var apiKey="qI4RzAhO7OerqhKQ6ZHukByZkZOI2zL1";
+    // var queryURL='';
+    if(startYear===''&& endYear==='')
+    {
+        queryURL="https://api.nytimes.com/svc/search/v2/articlesearch.json?q="+searchItem+"&api-key="+apiKey;
+    }
+    else{
+        queryURL="https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date="+startYear+"&end_date="+endYear+"&q="+searchItem+"&api-key="+apiKey;
+    }
+    $.ajax({
+        url:queryURL,
+        method:"GET"
+    
+    }).then(function(response){
 
-$.ajax({
-url: queryURL,
-method: "GET"
-})
+        $("#content").text(JSON.parse(JSON.stringify(response)));
+    }
+    );
+}
+);
 
-.then(function(response) {
-// Step 1: Run this file, click a button, and see what the response object looks like in the browser's console.
-// Open up the data key, then open up the 0th, element. Study the keys and how the JSON is structured.
-​
-      console.log(response);
-​
-      // Step 2: since the image information is inside of the data key,
-      // make a variable named results and set it equal to response.data   
-  })
+$("#reset").click(function(){
+    $("#content").text("");
+});
+
